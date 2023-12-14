@@ -6,7 +6,7 @@
         content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
   <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>Character Motion Compiler</title>
 
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -205,31 +205,20 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            Text-to-motion diffusion models can generate realistic animations from text prompts, but do not support fine-grained motion editing controls. 
+            In this paper we present a method for using natural language to iteratively specify fine-grained edits to existing character animations, a task that is common in most computer animation workflows.  
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+            Rather than adopt an end-to-end, entirely data-driven approach to accomplish this task, 
+            our key idea is to represent a space of motion edits using a set of kinematic motion operators that have well-defined semantics for how to modify specific frames of a target motion. 
+            We provide an algorithm that leverages pre-existing language models to translate textual descriptions of motion edits to sequences of motion editing operators, 
+            which we call "motion editing programs".  Given new character animation keyframes produced by the motion editing operators, we use diffusion-based keyframe
+            interpolation to generate realistic final motions.
           </p>
           <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+           Through a user study and qualitative evaluation, we demonstrate that our pipeline, which we call a "character motion compiler",
+            can perform motion edits that respect the animator's editing intent, remain faithful to the original animation (they edit the original animation, not dramatically change it),
+            and yield realistic character animation results.  
           </p>
         </div>
       </div>
